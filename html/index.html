@@ -9,24 +9,157 @@
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body id="yui3-css-stamp.cssreset">
-    <div class="main">
-        <div class="row">
-            <div>Checkout</div>
+<body>
+    <div class="container">
+        <div class="navBar">
             <div>
-                <ul class="breadcrumb">
-                    <li><a href="#">Shipping</a></li>
-                    <li><a href="#"><b>Payment Method</b></a></li>
-                    <li><a href="#">Confirmation</a></li>
+                <span style="font-weight: bolder">
+                Checkout
+                </span>
+            </div>
+            <div>
+                <ul>
+                    <li>Shipping</li>
+                    <li>
+                        <span style="font-weight: bold">
+                        Payment Method
+                        </span>
+                    </li>
+                    <li>Confirmation</li>
                 </ul>
             </div>
-            <div class="closeIcon">
+            <div>
                 <i class="fa fa-window-close"></i>
             </div>
         </div>
-        <div class="row">
-            <div>Payment Block</div>
-            <div class="cartStyle">Cart Block</div>
+        <div class="section">
+            <div class="sectionLeft">
+                <h1>
+                    Wallet
+                </h1>
+                <div class="card">
+                    <img src="./images/cards/discover.png">
+                    <img src="./images/cards/mastercard.png">
+                    <img src="./images/cards/visa.png">
+                </div>
+                <h1>
+                    New Card
+                </h1>
+                <div class="newCard">
+                    <form action="">
+                        <input type="text" placeholder="Name on Card">
+                        <input type="text" placeholder="xxxx-xxxx-xxxx-xxxx">
+                        <div>
+                                <input type="text" placeholder="MM/YY">
+                                <input type="text" placeholder="CVV">
+                        </div>
+                        <input type="button" value="CONTINUE">
+                    </form>
+                </div>
+            </div>
+            <div class="sectionRight">
+                <div class="productCart">
+                    <div>
+                        <img src="./images/products/mobile-holder.jpg">
+                        <div class="productDetail">
+                            <div>
+                                <h2>
+                                    Mobile Holder
+                                </h2>
+                                <h2>
+                                    $ 10.00
+                                </h2>
+                            </div>
+                            <div>
+                                <ul>
+                                    <li>Black</li>
+                                    <li>Quantity: 1</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="./images/products/rado.jpg">
+                        <div class="productDetail">
+                                <div>
+                                        <h2>
+                                            Rado Watch
+                                        </h2>
+                                        <h2>
+                                            $ 10.00
+                                        </h2>
+                                </div>
+                                <div>
+                                    <ul>
+                                        <li>Black</li>
+                                        <li>Quantity: 1</li>
+                                    </ul>
+                                </div>
+                            </div>
+                    </div>
+                    <div>
+                        <img src="./images/products/usb-c-2-micro.jpeg">
+                        <div class="productDetail">
+                                <div>
+                                        <h2>
+                                            C Type to Micro Converter
+                                        </h2>
+                                        <h2>
+                                            $ 10.00
+                                        </h2>
+                                </div>
+                                <div>
+                                    <ul>
+                                        <li>Black</li>
+                                        <li>Quantity: 1</li>
+                                    </ul>
+                                </div>
+                            </div>
+                    </div>
+                    <div>
+                        <img src="./images/products/hard-case.jpg">
+                        <div class="productDetail">
+                                <div>
+                                        <h2>
+                                            Mobile Case
+                                        </h2>
+                                        <h2>
+                                            $ 10.00
+                                        </h2>
+                                </div>
+                                <div>
+                                    <ul>
+                                        <li>Black</li>
+                                        <li>Quantity: 1</li>
+                                    </ul>
+                                </div>
+                            </div>
+                    </div>
+
+                </div>
+                <div class="bill">
+                    <div>
+                        <h2>Sub Total</h2>
+                        <h2>$ 100.00</h2>
+                    </div>
+                    <div>
+                        <h2>Shipping</h2>
+                        <h2>$ 10.00</h2>  
+                    </div>
+                    <div>
+                        <h2>Taxes</h2>
+                        <h2>$ 5.00</h2>
+                    </div>
+                </div>
+                <div class="total">
+                    <h2>
+                        Total
+                    </h2>
+                    <h2>
+                        $ 115.00
+                    </h2>
+                </div>
+            </div>
         </div>
     </div>
 </body>
