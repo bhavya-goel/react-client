@@ -2,10 +2,6 @@ html {
     margin: 10px;
     padding: 10px;
 }
-div {
-    width: 100%;
-    justify-content: center
-}
 .main div+div {
     border-top: 0px
 }
@@ -16,17 +12,25 @@ div {
     box-shadow: 5px 5px 3px gray;
     
 }
-.row {
+.row1 {
     border: grey 1px solid;
     display: flex;
     flex-direction: row;
+    padding: 5px;
+    justify-content: space-between;
+}
+.row2 {
+    border: grey 1px solid;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.row2 > div {
+    width: 50%;
+    padding: 5px;
 }
 .cartStyle {
     background-color: rgb(216, 209, 209);
-}
-.closeIcon {
-    width: 1%;
-    padding: 1px 5px
 }
 ul.breadcrumb {
     list-style: none;
