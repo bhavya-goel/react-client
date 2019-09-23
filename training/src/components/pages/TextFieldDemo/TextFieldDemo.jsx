@@ -1,6 +1,7 @@
 import React from 'react'
 import { TextField } from '../../TextField'
 import { Slider } from '../../Slider'
+import { banner } from '../../../configs/constants'
 
 function TextFieldDemo(props) {
     return(
@@ -8,16 +9,7 @@ function TextFieldDemo(props) {
             <div>
                 <Slider
                     altText='Default Banner'
-                    banners={
-                        [
-                            'default.png',
-                            'load-balancer.png',
-                            'full-stack-web-development.jpg',
-                            'js.jpg',
-                            'dns-server.png',
-                            'cloud.jpg'
-                        ]
-                    }
+                    banners={ banner }
                     defaultBanner='default.png'
                     duration={1000}
                     height={150}
@@ -25,9 +17,9 @@ function TextFieldDemo(props) {
                 />
             </div>
             <br/>
-            <TextField value='text field'/>
-            <TextField error='' value='error field'/>
-            <TextField disabled={true} value='disabled'/>
+            <TextField  error='' value='text field'/>
+            <TextField error='error' value='error field'/>
+            <TextField error='' disabled={true} value='disabled'/>
         </div>
     )
 }

@@ -1,16 +1,24 @@
 import React from 'react'
 
 function RadioGroup(props) {
-    const option = props.options.filter((obj) => {
-        if (props.selectField in obj) {
-            return true 
-        }
-        else return false
+    console.log('>>>>>>>>',props.value)
+    const redio = props.options.map((obj, index) => {
+        return(
+            <>
+                <label>{obj.label}</label>
+                <input type='radio' name='sport' value={obj.value} onChange={props.onChange}>
+                </input>
+                <br/>
+            </>
+        )
     })
-    console.log(option[0])
-    // const redio = props.options.map((obj) => <input>obj.label</input>)
     return (
-        <h1>sd</h1>
+        <>
+        <br/>
+        <label><strong>What you do</strong></label>
+        <br/>
+        {redio}
+        </>
     )
 }
 

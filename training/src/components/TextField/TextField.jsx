@@ -1,22 +1,24 @@
 import React from 'react'
-import style, { error } from './style'
+import style, { error as errorStyle} from './style'
 
 function TextField(props) {
+    const { value, error, disabled, onChange } = props
     let fieldStyle = style
-    if ('error' in props) {
+    if (error.length) {
         fieldStyle = {
             ...style,
-            ...error
+            ...errorStyle
         }
+        console.log(fieldStyle)
     }
     return (
         <input
             type='text'
-            onChange={props.onChange}
+            onChange={onChange}
             name='textField'
-            value={props.value}
+            value={value}
             style={fieldStyle}
-            disabled={props.disabled}
+            disabled={disabled}
         >
         </input>
     )

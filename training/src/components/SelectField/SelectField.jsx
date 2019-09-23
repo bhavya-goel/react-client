@@ -1,8 +1,11 @@
 import React from 'react'
 
 function SelectField(props) {
-    const options = props.options.map((obj) => <option value={obj.value} >{obj.label}</option> )
+    const options = props.options.map((obj, index) => <option value={obj.value} key={index}>{obj.label}</option> )
     return (
+        <>
+        <label><strong> Select the game you play</strong></label>
+        <br/>
         <select
             name="selectField"
             value={props.value || props.defaultText }
@@ -12,6 +15,8 @@ function SelectField(props) {
             options
         }
         </select>
+        <br/>
+        </>
     )
 }
 export default SelectField

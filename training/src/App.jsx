@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { InputDemo } from './components'
+import { InputDemo, TextFieldDemo } from './components'
 
 class App extends Component {
   render() {

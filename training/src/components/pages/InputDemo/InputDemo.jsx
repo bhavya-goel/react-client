@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { TextField } from '../../TextField'
 import { SelectField } from '../../SelectField'
 import { RadioGroup } from '../../RadioGroup'
-import { GAMES_OPTIONS, PLAYERS} from '../../../configs/constants'
+import { GAMES_OPTIONS, player} from '../../../configs/constants'
 class InputDemo extends Component {
     constructor(props) {
         super(props)
         this.state = {
             textField: '',
-            selectField: GAMES_OPTIONS[0],
+            sport: null,
             cricket: null,
             footBall: null
         }
@@ -26,43 +26,61 @@ class InputDemo extends Component {
         })
     }
     handlePlayerChange(event) {
+        const value = event.target.value
+        const name = this.state.sport
+        if(name === 'cricket') {
+            this.setState({
+                cricket: value,
+                footBall: null
+            }, () => {
+                console.log(this.state)
+            })
+        } else if (name === 'footBall') {
+            this.setState({
+                cricket: null,
+                footBall: value
+            }, () => {
+                console.log(this.state)
+            })
+        }
     }
     handleSportChange(event) {
         const value = event.target.value
-        if (value !== ''){
-            document.getElementById('radio').style.display = 'block'
-        } else {
-            document.getElementById('radio').style.display = 'none'
-        }
-
         this.setState({
-            selectField: value
+            sport: value,
+            cricket: null,
+            footBall: null
         }, () => {
             console.log(this.state)
         })
     }
 
-    render() {
+    render() { 
+        const { textField, sport, cricket, footBall } = this.state
+        let option = []
+        if (sport) {
+            option = player[sport]
+        }
         return(
             <div>
                 <TextField
-                    value={this.state.textField}
+                    value={textField}
+                    error=''
                     onChange={this.handleNameChange}
                 />
                 <SelectField
-                    value={this.state.selectField.value}
-                    defaultText={this.state.selectField.label}
+                    value={sport}
+                    defaultText={GAMES_OPTIONS[0].label}
                     onChange={this.handleSportChange}
                     options={GAMES_OPTIONS}
                 />
-                <div id = 'radio' style={{display: 'none'}}>
-                    
+                { !sport ? '' :
                     <RadioGroup
-                        value={this.state.RadioGroup}
+                        value={cricket || footBall}
                         onChange={this.handlePlayerChange}
-                        options={PLAYERS}
+                        options={ option }
                     />
-                </div>
+                }
             </div>
         )
     }
