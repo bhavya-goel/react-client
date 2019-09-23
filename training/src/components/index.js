@@ -1,1 +1,1 @@
-export { TextFieldDemo } from './pages'
+export { TextFieldDemo, InputDemo } from './pages'

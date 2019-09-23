@@ -26,8 +26,8 @@ function TextFieldDemo(props) {
             </div>
             <br/>
             <TextField value='text field'/>
-            <TextField error='error field'/>
-            <TextField disabled={true} />
+            <TextField error='' value='error field'/>
+            <TextField disabled={true} value='disabled'/>
         </div>
     )
 }
