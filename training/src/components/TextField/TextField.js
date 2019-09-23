@@ -2,6 +2,7 @@ import React from 'react'
 import style, { error } from './style'
 
 function TextField(props) {
+    //checks if props has a value field
     if (props.value) {
         return(
             <label>TextField:
@@ -14,7 +15,9 @@ function TextField(props) {
                 </input>
             </label>
         )
-    } else if (props.error) {
+    }
+    //checks if props contain error field
+    else if (props.error) {
         return(
             <label>Error TextField:
                 <br/>
@@ -28,7 +31,9 @@ function TextField(props) {
             </label>
         )
 
-    } else if (props.disabled) {
+    }
+    // check if props has disabled field
+    else if (props.disabled) {
         return(
             <label> Disabled TextField:
                 <br/>
