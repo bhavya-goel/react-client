@@ -1,0 +1,40 @@
+.container {
+    margin: 10px;
+    border: 1px solid gray;
+    box-shadow: 5px 5px 5px grey;
+    box-sizing: content-box;
+}
+.navBar {
+    display: flex;
+    padding: 5px 5px;
+    flex-direction: row;
+    border-bottom: 1px solid gray;
+    justify-content: space-between;
+}
+.navBar ul li {
+    display: inline;
+}
+.navBar ul {
+    text-decoration: none;
+    list-style: none;
+}
+.navBar ul li+li::before {
+    content: '/ ';
+}
+.section {
+    display: flex;
+    flex-direction: row;
+}
+.sectionLeft {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 2px;
+}
+.sectionRight {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    background-color: bisque;
+    padding: 5px;
+}
