@@ -28,6 +28,7 @@ class InputDemo extends Component {
     handlePlayerChange(event) {
         const value = event.target.value
         const name = this.state.sport
+        console.log("player", event.target)
         if(name === 'cricket') {
             this.setState({
                 cricket: value,
@@ -79,6 +80,7 @@ class InputDemo extends Component {
                         value={cricket || footBall}
                         onChange={this.handlePlayerChange}
                         options={ option }
+                        name={sport}
                     />
                 }
             </div>
