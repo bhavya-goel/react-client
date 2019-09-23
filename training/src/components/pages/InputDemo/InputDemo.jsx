@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { TextField } from '../../TextField'
 import { SelectField } from '../../SelectField'
-// import { RadioGroup } from '../../RadioGroup'
-import { GAMES_OPTIONS, CRICKET_PLAYER_OPTIONS, FOOTBALL_PLAYER_OPTIONS} from '../../../configs/constants'
+import { RadioGroup } from '../../RadioGroup'
+import { GAMES_OPTIONS, PLAYERS} from '../../../configs/constants'
 class InputDemo extends Component {
     constructor(props) {
         super(props)
@@ -29,7 +29,6 @@ class InputDemo extends Component {
     }
     handleSportChange(event) {
         const value = event.target.value
-        console.log(value)
         if (value !== ''){
             document.getElementById('radio').style.display = 'block'
         } else {
@@ -57,11 +56,12 @@ class InputDemo extends Component {
                     options={GAMES_OPTIONS}
                 />
                 <div id = 'radio' style={{display: 'none'}}>
-                    {/* <RadioGroup
+                    
+                    <RadioGroup
                         value={this.state.RadioGroup}
                         onChange={this.handlePlayerChange}
-                        options={[]}
-                    /> */}
+                        options={PLAYERS}
+                    />
                 </div>
             </div>
         )
