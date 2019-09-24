@@ -3,13 +3,12 @@ import style, { error as errorStyle} from './style'
 
 function TextField(props) {
     const { value, error, disabled, onChange } = props
-    let fieldStyle = style
+    let fieldStyle = { ...style }
     if (error.length) {
         fieldStyle = {
             ...style,
             ...errorStyle
         }
-        console.log(fieldStyle)
     }
     return (
         <input

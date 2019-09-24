@@ -3,7 +3,7 @@ import { TextField } from '../../TextField'
 import { Slider } from '../../Slider'
 import { banner } from '../../../configs/constants'
 
-function TextFieldDemo(props) {
+function TextFieldDemo() {
     return(
         <div>
             <div>

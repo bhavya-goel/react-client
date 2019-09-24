@@ -1,9 +1,9 @@
 import React from 'react';
-import { InputDemo } from './components'
+import { InputDemo, TextFieldDemo } from './components'
 
 function App() {
   return (
-    <InputDemo />
+    <TextFieldDemo />
   )
 }
 
