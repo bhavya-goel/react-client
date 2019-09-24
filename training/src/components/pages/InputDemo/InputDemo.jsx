@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import * as yup from 'yup'
 import { TextField } from '../../TextField'
 import { SelectField } from '../../SelectField'
 import { RadioGroup } from '../../RadioGroup'
@@ -10,14 +11,14 @@ class InputDemo extends Component {
             textField: '',
             sport: null,
             cricket: null,
-            footBall: null
+            footBall: null,
+            textFieldIsTouched: false,
+            sportIsTouched: false,
+            cricketIsTouched: false
         }
-        this.handleNameChange= this.handleNameChange.bind(this)
-        this.handlePlayerChange= this.handlePlayerChange.bind(this)
-        this.handleSportChange= this.handleSportChange.bind(this)
     }
 
-    handleNameChange(event) {
+    handleNameChange = (event) => {
         const value = event.target.value
         this.setState({
             textField: value
@@ -25,7 +26,8 @@ class InputDemo extends Component {
             console.log(this.state)
         })
     }
-    handlePlayerChange(event) {
+
+    handlePlayerChange = (event) => {
         const value = event.target.value
         const name = this.state.sport
         console.log("player", event.target)
@@ -45,7 +47,8 @@ class InputDemo extends Component {
             })
         }
     }
-    handleSportChange(event) {
+
+    handleSportChange = (event) => {
         const value = event.target.value
         this.setState({
             sport: value,
@@ -55,6 +58,28 @@ class InputDemo extends Component {
             console.log(this.state)
         })
     }
+    hasError = (valueCheck) => {
+        console.log('value..', valueCheck)
+        if(!valueCheck){
+            return true
+        }
+    }
+    isTouched = (event, field) => {
+        console.log('event>>', event.target)
+        const result = event.target.name === field
+        return result
+    }
+    getError = (event) => {
+        if (this.isTouched(event, 'textField') && this.hasError(this.state.textField)) {
+            console.log('error')
+        } else if (this.isTouched(event, 'selectField') && this.hasError(this.state.sport)) {
+            console.log('error')
+        }else if (this.isTouched(event, event.target.name) && this.hasError(event.target.value)) {
+            console.log('error')
+        }
+        
+
+    }
 
     render() { 
         const { textField, sport, cricket, footBall } = this.state
@@ -63,7 +88,7 @@ class InputDemo extends Component {
             option = player[sport]
         }
         return(
-            <div>
+            <div onBlur={this.getError}>
                 <TextField
                     value={textField}
                     error=''
