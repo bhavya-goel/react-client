@@ -34,21 +34,15 @@ class InputDemo extends Component {
                 color: 'primary'
             }
         }
-        this.textFieldCheck = yup.object().shape({
-            value: yup.string()
+        this.FieldCheck = yup.object().shape({
+            textField: yup.string()
                 .required('name is required')
-                .min(3, 'name too short')
-        })
-        this.sportCheck = yup.object().shape({
-            value: yup.string()
-                .required('sport is required')
-        })
-        this.cricketCheck = yup.object().shape({
-            value: yup.string()
-                .required('cricket type is required')
-        })
-        this.footBallCheck = yup.object().shape({
-            value: yup.string()
+                .min(3, 'name too short'),
+            sport: yup.string()
+                .required('sport is required'),
+            cricket: yup.string()
+                .required('cricket type is required'),
+            footBall: yup.string()
                 .required('fotBall type is required')
         })
     }
@@ -125,11 +119,12 @@ class InputDemo extends Component {
     getError = (event) => {
         const field = event.target.name
         if (this.state[field].isTouched) {
-            this[`${field}Check`]
-            .validate({
-                value: this.state[field].value
+            this.FieldCheck
+            .validateAt(field, {
+                [field]: this.state[field].value
             })
-            .then(() => {
+            .then((result) => {
+                console.log(result)
                 this.checkError()
             })
             .catch((errorText) => {
