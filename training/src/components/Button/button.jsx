@@ -2,6 +2,7 @@ import React from 'react'
 
 function Button(props) {
     const { color, disabled, style, value, onClick } = props
+    
     let buttonStyle = {
             ...style,
             backgroundColor: color

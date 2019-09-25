@@ -176,7 +176,7 @@ class InputDemo extends Component {
         } else {
             this.setState({
                 button: {
-                    color: 'primary',
+                    color: 'buttonface',
                     disabled: true
                 }
             })
