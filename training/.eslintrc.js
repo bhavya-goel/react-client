@@ -5,6 +5,7 @@ module.exports = {
     },
     "extends": "eslint:recommended",
     "parser": "babel-eslint",
+
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -23,5 +24,6 @@ module.exports = {
         "react/jsx-uses-react": 1,
         "react/jsx-uses-vars": 1,
         "no-console": "off",
+
     }
 };
