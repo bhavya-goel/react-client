@@ -26,7 +26,7 @@ class InputDemo extends Component {
             },
             footBall: {
                 value: '',
-                isTouched: null,
+                isTouched: false,
                 error: ''
             },
             button: {
@@ -112,36 +112,43 @@ class InputDemo extends Component {
             }
         })
     )}
+
     isTouched = () => {
         const { textField, sport, cricket, footBall } = this.state
         if(textField.isTouched && sport.isTouched && (cricket.isTouched || footBall.isTouched)) {
+            console.log('touch', this.state)
             return true
         } else {
             return false
         }
     }
-    getError = () => {
-        const stateArray = ['textField', 'sport', 'cricket', 'footBall']
-        stateArray.forEach((field) => {
-            if (this.state[field].isTouched) {
-                this[`${field}Check`]
-                .validate({
-                    value: this.state[field].value
-                })
-                .catch((errorText) => {
-                    errorText = errorText.errors[0]
-                    this.setState((previousState) => ({
-                        [field]: {
-                            ...previousState[field],
-                            error: errorText
-                        }
-                    }), () => {
-                        console.log(this.state)
-                    })
-                })
-            }
-        })
+
+    getError = (event) => {
+        console.log('event------' ,event.target.name)
+        const field = event.target.name
+        if (this.state[field].isTouched) {
+            this[`${field}Check`]
+            .validate({
+                value: this.state[field].value
+            })
+            .then(() => {
+                this.checkError()
+            })
+            .catch((errorText) => {
+                errorText = errorText.errors[0]
+                this.setState((previousState) => ({
+                    [field]: {
+                        ...previousState[field],
+                        error: errorText
+                    }
+                }), () =>{
+                    this.checkError()
+                }
+            )
+            }) 
+        }
     }
+
     hasError = () => {
         const stateArray = ['textField', 'sport', 'cricket', 'footBall']
         const result = stateArray.some((field) => {
@@ -151,16 +158,17 @@ class InputDemo extends Component {
                 return false
             }
         })
+        console.log('res', this.state)
         return result
     }
+
     submit = () => {
         console.log('>>>>>>>>>  submit')
     }
 
-    checkError = async() => {
-        const touchResult = await this.isTouched()
-        await this.getError()
-        const result = await this.hasError()
+    checkError = () => {
+        const touchResult = this.isTouched()
+        const result = this.hasError()
         if(touchResult && !result) {
             this.setState({
                 button: {
@@ -177,6 +185,7 @@ class InputDemo extends Component {
             })
         }
     }
+
     render() { 
         const { textField, sport, cricket, footBall, button } = this.state
         let option = []
@@ -184,10 +193,11 @@ class InputDemo extends Component {
             option = player[sport.value]
         }
         return(
-            <div onBlur={this.checkError}>
+            <div>
                 <TextField
                     value={textField.value}
                     error={textField.error}
+                    onBlur={this.getError}
                     onFocus={this.handleOnFocus}
                     onChange={this.handleNameChange}
                 />
@@ -198,6 +208,7 @@ class InputDemo extends Component {
                     error={sport.error}
                     defaultText={GAMES_OPTIONS[0].label}
                     onFocus={this.handleOnFocus}
+                    onBlur={this.getError}
                     onChange={this.handleSportChange}
                     options={GAMES_OPTIONS}
                 />
@@ -206,6 +217,7 @@ class InputDemo extends Component {
                         value={cricket.value || footBall.value}
                         error={this.state[sport.value].error}
                         onFocus={this.handleOnFocus}
+                        onBlur={this.getError}
                         onChange={this.handlePlayerChange}
                         options={ option }
                         name={sport.value}

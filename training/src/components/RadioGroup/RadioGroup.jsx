@@ -2,7 +2,7 @@ import React from 'react'
 import { errorText } from './style'
 
 function RadioGroup(props) {
-    const { options, onChange, name, value, onFocus, error } = props
+    const { options, onChange, name, value, onFocus, error, onBlur } = props
     const radio = options.map((obj, index) => {
         return(
             < React.Fragment key={index}>
@@ -10,7 +10,8 @@ function RadioGroup(props) {
                     type='radio'
                     name={name}
                     value={obj.value}
-                    onChange={onChange} 
+                    onChange={onChange}
+                    onBlur={onBlur} 
                     onFocus={onFocus}
                     checked={obj.label === value}
                 />

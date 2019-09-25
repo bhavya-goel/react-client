@@ -2,7 +2,7 @@ import React from 'react'
 import style, { error as errorStyle, errorText} from './style'
 
 function TextField(props) {
-    const { value, error, disabled, onChange, onFocus } = props
+    const { value, error, disabled, onChange, onFocus, onBlur } = props
     let fieldStyle = { ...style }
     if (error.length) {
         fieldStyle = {
@@ -17,6 +17,7 @@ function TextField(props) {
             <input
                 type='text'
                 onFocus={onFocus}
+                onBlur={onBlur}
                 onChange={onChange}
                 name='textField'
                 value={value}
