@@ -116,7 +116,6 @@ class InputDemo extends Component {
     isTouched = () => {
         const { textField, sport, cricket, footBall } = this.state
         if(textField.isTouched && sport.isTouched && (cricket.isTouched || footBall.isTouched)) {
-            console.log('touch', this.state)
             return true
         } else {
             return false
