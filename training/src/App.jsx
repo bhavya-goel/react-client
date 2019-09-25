@@ -1,12 +1,12 @@
 import React from 'react';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import theme from './theme'
-import { InputDemo } from './components'
+import { ChildrenDemo } from './components'
 
 function App() {
   return (
     < MuiThemeProvider theme={theme}>
-      <InputDemo />
+      <ChildrenDemo />
     </ MuiThemeProvider>
   )
 }
