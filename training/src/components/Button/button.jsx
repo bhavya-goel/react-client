@@ -1,11 +1,11 @@
 import React from 'react'
+import { style as buttonStyle } from './style'
 
 function Button(props) {
-    const { color, disabled, style, value, onClick } = props
+    const { color, disabled, value, onClick } = props
     
-    let buttonStyle = {
-            ...style,
-            backgroundColor: color
+    let buttonS = {
+            ...buttonStyle[color]
         }
     return (
         <>
@@ -15,7 +15,7 @@ function Button(props) {
                 type="button"
                 value={value}
                 disabled={disabled}
-                style={buttonStyle}
+                style={buttonS}
                 onClick={onClick}
             />
         </>

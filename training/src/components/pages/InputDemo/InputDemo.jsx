@@ -168,14 +168,14 @@ class InputDemo extends Component {
         if(touchResult && !result) {
             this.setState({
                 button: {
-                    color: 'green',
+                    color: 'secondary',
                     disabled: false
                 }
             })
         } else {
             this.setState({
                 button: {
-                    color: 'buttonface',
+                    color: 'primary',
                     disabled: true
                 }
             })
