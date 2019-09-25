@@ -124,7 +124,6 @@ class InputDemo extends Component {
     }
 
     getError = (event) => {
-        console.log('event------' ,event.target.name)
         const field = event.target.name
         if (this.state[field].isTouched) {
             this[`${field}Check`]
@@ -158,12 +157,10 @@ class InputDemo extends Component {
                 return false
             }
         })
-        console.log('res', this.state)
         return result
     }
 
     submit = () => {
-        console.log('>>>>>>>>>  submit')
     }
 
     checkError = () => {
