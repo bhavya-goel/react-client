@@ -1,5 +1,6 @@
 import React from 'react'
 import { Math } from '../../Math'
+import Typography from '@material-ui/core/Typography'
 class ChildrenDemo extends React.Component{
     templateOne = (calculate) => {
         const { first, operator, second, result } = calculate
@@ -27,9 +28,11 @@ class ChildrenDemo extends React.Component{
                 operator = 'division'
         }
         return (
-            <div>
-                { operator+' of '+first+' and '+second+' is '+result }
-            </div>
+            <Typography variant='subtitle2'>
+                <div>
+                    { operator+' of '+first+' and '+second+' is '+result }
+                </div>
+            </Typography>
         )
     }
 
