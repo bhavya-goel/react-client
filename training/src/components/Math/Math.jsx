@@ -5,19 +5,22 @@ function Math(props) {
     const allowedOperators = ['+', '-', '*', '/']
     let result = null
     let calculate = null
+
+    //check if operator entered is valid
     if (allowedOperators.includes(operator)) {
         result = eval(first+operator+second)
     }
     else {
         result = 'invalid operator'
     }
+
+    // object to be rendered by children
     calculate = {
         first,
         second,
         operator,
         result
     }
-    console.log(result)
     return(
         <div>
             {   result !== 'invalid operator' ?
