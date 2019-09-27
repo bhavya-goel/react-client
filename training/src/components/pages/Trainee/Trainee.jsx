@@ -150,6 +150,11 @@ class Trainee extends React.Component {
             })
         }
     }
+    cancel = () => {
+        this.setState({
+            ...this.initialState
+        })
+    }
     render() {
         const { error, button, open, user } = this.state
         return (
@@ -163,6 +168,7 @@ class Trainee extends React.Component {
                 onChange={this.handleChange}
                 onBlur={this.validate}
                 onSubmit={this.submit}
+                onCancel={this.cancel}
                 user={user}
                 >
                 </AddDialog>

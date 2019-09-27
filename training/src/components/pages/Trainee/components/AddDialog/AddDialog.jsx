@@ -11,7 +11,7 @@ function AddDialog(props) {
     
     const {
         open, onClose, onSubmit, user,
-        onFocus, onChange, onBlur,
+        onFocus, onChange, onBlur, onCancel,
         error: { name, password, email, confirmPassword },
         submitButton
     } = props
@@ -85,6 +85,12 @@ function AddDialog(props) {
                 color={submitButton.color}
             >
                 Submit
+            </Button>
+            <Button
+                onClick={onCancel}
+                variant='contained'
+            >
+                Cancel
             </Button>
             </DialogActions>
         </Dialog>
