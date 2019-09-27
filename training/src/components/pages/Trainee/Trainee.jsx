@@ -34,6 +34,10 @@ class Trainee extends React.Component {
                 email: '',
                 password: ''
             },
+            showIcon: {
+                password: false,
+                confirmPassword: false
+            },
             open: false,
             button: {
                 disabled: true,
@@ -155,15 +159,25 @@ class Trainee extends React.Component {
             ...this.initialState
         })
     }
+    handleIconClick = (name) => {
+        this.setState((previousState) => ({
+            showIcon: {
+                ...previousState.showIcon,
+                [name]: !previousState.showIcon[name]
+            }
+        }))
+    }
     render() {
-        const { error, button, open, user } = this.state
+        const { error, button, open, user, showIcon } = this.state
         return (
             <>
                 <AddDialog
                 onFocus={this.handleTouch}
                 error={error}
+                showIcon={showIcon}
                 submitButton={button}
                 open={open}
+                handleIconClick={this.handleIconClick}
                 onClose={this.addTraineeClose}
                 onChange={this.handleChange}
                 onBlur={this.validate}

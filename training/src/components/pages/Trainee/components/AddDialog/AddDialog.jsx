@@ -5,6 +5,10 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import useStyles from './style'
+import Visibility from '@material-ui/icons/Visibility'
+import VisibilityOff from '@material-ui/icons/VisibilityOff'
+import InputAdornment from '@material-ui/core/InputAdornment'
+import IconButton from '@material-ui/core/IconButton'
 
 function AddDialog(props) {
     const classes = useStyles()
@@ -13,7 +17,7 @@ function AddDialog(props) {
         open, onClose, onSubmit, user,
         onFocus, onChange, onBlur, onCancel,
         error: { name, password, email, confirmPassword },
-        submitButton
+        submitButton, showIcon, handleIconClick
     } = props
     
     return (
@@ -56,14 +60,25 @@ function AddDialog(props) {
                         helperText={password.length ? password : null}
                         onFocus={onFocus}
                         onBlur={onBlur}
-                        type='password'
+                        type={showIcon.password ? 'text' : 'password'}
                         onChange={onChange}
                         label='Password'
                         variant='outlined'
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment>
+                                <IconButton
+                                    onClick={() => handleIconClick('password')}
+                                >
+                                    {showIcon.password ? <Visibility /> : <VisibilityOff />}
+                                </IconButton>
+                                </InputAdornment>
+                            )
+                        }}
                         className={classes.passwordField}
                     />
                     <TextField
-                        type='password'
+                        type={showIcon.confirmPassword ? 'text' : 'password'}
                         name='confirmPassword'
                         error={confirmPassword.length ? true : false}
                         helperText={confirmPassword.length ? confirmPassword : null}
@@ -71,6 +86,17 @@ function AddDialog(props) {
                         onBlur={onBlur}
                         onChange={onChange}
                         label='Confirm Password'
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment>
+                                <IconButton
+                                    onClick={() => handleIconClick('confirmPassword')}
+                                >
+                                    {showIcon.confirmPassword ? <Visibility /> : <VisibilityOff />}
+                                </IconButton>
+                                </InputAdornment>
+                            )
+                        }}
                         variant='outlined'
                         className={classes.passwordField}
                     />
