@@ -87,7 +87,6 @@ class Trainee extends React.Component {
                 [name]: true
             }
         }))
-
     }
     handleChange = (event) => {
         let { target: { name, value } } = event

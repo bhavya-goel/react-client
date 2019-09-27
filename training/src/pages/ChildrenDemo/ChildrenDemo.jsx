@@ -1,5 +1,5 @@
 import React from 'react'
-import { Math } from '../../Math'
+import { Math } from '../../components'
 import Typography from '@material-ui/core/Typography'
 class ChildrenDemo extends React.Component{
     templateOne = (calculate) => {

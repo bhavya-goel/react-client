@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import * as yup from 'yup'
-import { TextField } from '../../TextField'
-import { SelectField } from '../../SelectField'
-import { RadioGroup } from '../../RadioGroup'
-import { Button } from '../../Button'
-import { GAMES_OPTIONS, player} from '../../../configs/constants'
+import { TextField, SelectField, RadioGroup, Button } from '../../components'
+import { GAMES_OPTIONS, player} from '../../configs/constants'
 class InputDemo extends Component {
     constructor(props) {
         super(props)
