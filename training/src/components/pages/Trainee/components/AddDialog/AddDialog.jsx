@@ -9,7 +9,12 @@ import useStyles from './style'
 function AddDialog(props) {
     const classes = useStyles()
     
-    const { open, onClose, onSubmit, user, onFocus, onChange, onBlur, error, submitButton } = props
+    const {
+        open, onClose, onSubmit, user,
+        onFocus, onChange, onBlur,
+        error: { name, password, email, confirmPassword },
+        submitButton
+    } = props
     
     return (
         <Dialog open={open} onClose={onClose}>
@@ -21,9 +26,9 @@ function AddDialog(props) {
                 <form className={classes.container}>
                     <TextField
                         label='Name'
-                        error={error.name.length ? true : false}
+                        error={name.length ? true : false}
                         name='name'
-                        helperText={error.name.length ? error.name : null}
+                        helperText={name.length ? name : null}
                         onChange={onChange}
                         onBlur={onBlur}
                         onFocus={onFocus}
@@ -33,10 +38,10 @@ function AddDialog(props) {
                     />
                     <TextField
                         name='email'
-                        error={error.email.length ? true : false}
+                        error={email.length ? true : false}
                         onBlur={onBlur}
                         onFocus={onFocus}
-                        helperText={error.email.length ? error.email : null}
+                        helperText={email.length ? email : null}
                         value={user.email}
                         onChange={onChange}
                         label='Email Address'
@@ -46,9 +51,9 @@ function AddDialog(props) {
                     <div className={classes.div}>
                     <TextField
                         value={user.password}
-                        error={error.password.length ? true : false}
+                        error={password.length ? true : false}
                         name='password'
-                        helperText={error.password.length ? error.password : null}
+                        helperText={password.length ? password : null}
                         onFocus={onFocus}
                         onBlur={onBlur}
                         type='password'
@@ -60,8 +65,8 @@ function AddDialog(props) {
                     <TextField
                         type='password'
                         name='confirmPassword'
-                        error={error.confirmPassword.length ? true : false}
-                        helperText={error.confirmPassword.length ? error.confirmPassword : null}
+                        error={confirmPassword.length ? true : false}
+                        helperText={confirmPassword.length ? confirmPassword : null}
                         onFocus={onFocus}
                         onBlur={onBlur}
                         onChange={onChange}

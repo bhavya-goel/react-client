@@ -6,16 +6,22 @@ import { Button } from '@material-ui/core'
 class Trainee extends React.Component {
     constructor(props) {
         super(props)
+        const passwordError = 'must contain minimum 8 characters, atleast one uppercase, atleast one lowercase, atleast one digit'
         this.FieldCheck = yup.object().shape({
             name: yup.string()
                 .required('name is required')
                 .min(3, 'name too short'),
             email: yup.string()
-                .required('email is required'),
+                .required('email is required')
+                .matches(/^[a-zA-Z0-9.]+@gmail\.com$/, 'enter a valid email'),
             password: yup.string()
-                .required('password is required'),
+                .required('password is required')
+                .min(8, passwordError)
+                .matches(/(.*[a-z].*)/, passwordError)
+                .matches(/(.*[A-Z].*)/, passwordError)
+                .matches(/(.*[0-9].*)/, passwordError),
             confirmPassword: yup.string()
-                .required('re- enter password')
+                .required('confirm password is required')
                 .test('match',
                 'password does not match',
                 (passwordCheck) => {
@@ -70,7 +76,7 @@ class Trainee extends React.Component {
         
     }
     handleTouch = (event) => {
-        const name = event.target.name
+        const { target: { name } } = event
         this.setState((previousState) => ({
             isTouched: {
                 ...previousState.isTouched,
@@ -96,12 +102,14 @@ class Trainee extends React.Component {
 
     }
     validate = (event) => {
+        const { isTouched } = this.state
         const { target: { name, value } } = event
-        if (this.state.isTouched[name]) {
+
+        if (isTouched[name]) {
             this.FieldCheck
             .validateAt(name, {
                 [name]: value
-            })
+            }, {abortEarly: true})
             .then(() => {
                 this.finalCheck()
             })
@@ -119,8 +127,13 @@ class Trainee extends React.Component {
         }
     }
     finalCheck = () => {
-        const touchResult = Object.values(this.state.isTouched).every((value) => value)
-        const errorResult = Object.values(this.state.error).some((value) => value.length > 0)
+        const { isTouched, error } = this.state
+
+        const touchResult = Object.values(isTouched)
+            .every((value) => value)
+        const errorResult = Object.values(error)
+            .some((value) => value.length > 0)
+
         if(touchResult && !errorResult) {
             this.setState({
                 button: {
@@ -138,18 +151,19 @@ class Trainee extends React.Component {
         }
     }
     render() {
+        const { error, button, open, user } = this.state
         return (
             <>
                 <AddDialog
                 onFocus={this.handleTouch}
-                error={this.state.error}
-                submitButton={this.state.button}
-                open={this.state.open}
+                error={error}
+                submitButton={button}
+                open={open}
                 onClose={this.addTraineeClose}
                 onChange={this.handleChange}
                 onBlur={this.validate}
                 onSubmit={this.submit}
-                user={this.state.user}
+                user={user}
                 >
                 </AddDialog>
                 <Button
