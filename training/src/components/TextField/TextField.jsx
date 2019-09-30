@@ -1,52 +1,26 @@
 import React from 'react'
-import style, { error } from './style'
+import style, { error as errorStyle} from './style'
 
 function TextField(props) {
-    //checks if props has a value field
-    if (props.value) {
-        return(
-            <label>TextField:
-                <br/>
-                <input
-                    type='text'
-                    placeholder={props.value}
-                    style={style}
-                >
-                </input>
-            </label>
-        )
+    const { value, error, disabled, onChange } = props
+    let fieldStyle = style
+    if (error.length) {
+        fieldStyle = {
+            ...style,
+            ...errorStyle
+        }
     }
-    //checks if props contain error field
-    else if (props.error) {
-        return(
-            <label>Error TextField:
-                <br/>
-                <input
-                    type='text'
-                    placeholder={props.error}
-                    style={error}
-                    className='textError'
-                >
-                </input>
-            </label>
-        )
-
-    }
-    // check if props has disabled field
-    else if (props.disabled) {
-        return(
-            <label> Disabled TextField:
-                <br/>
-                <input
-                    value='Disabled'
-                    disabled={props.disabled}
-                    style={style}
-                >
-                </input>
-            </label>
-        )
-
-    }
+    return (
+        <input
+            type='text'
+            onChange={onChange}
+            name='textField'
+            value={value}
+            style={fieldStyle}
+            disabled={disabled}
+        >
+        </input>
+    )
 }
 
 export default TextField

@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
-import { TextFieldDemo } from './components'
+import React from 'react';
+import { InputDemo } from './components'
 
-class App extends Component {
-  render() {
-    return (
-      <TextFieldDemo />
-    )
-  }
+function App() {
+  return (
+    <InputDemo />
+  )
 }
 
 export default App;
