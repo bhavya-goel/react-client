@@ -3,7 +3,7 @@ export const formStyle = {
         display: 'flex',
         flexDirection: 'column',
         width: '50%',
-        margin: 'auto',
+        margin: '5% auto',
         padding: '5%'
     },
     field: {
