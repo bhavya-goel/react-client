@@ -16,5 +16,9 @@ export const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: '1'
+  },
+  link: {
+    textDecoration: 'none',
+    color: 'inherit'
   }
 }))

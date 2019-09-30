@@ -1,0 +1,3 @@
+const privateLayout = ({component} => {
+    return
+})

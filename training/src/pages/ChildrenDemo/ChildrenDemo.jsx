@@ -5,9 +5,11 @@ class ChildrenDemo extends React.Component{
     templateOne = (calculate) => {
         const { first, operator, second, result } = calculate
         return (
-            <div>
-                { first+' '+operator+' '+second+' '+'='+' '+result }
-            </div>
+            <Typography variant='subtitle2'>
+                <div>
+                    { first+' '+operator+' '+second+' '+'='+' '+result }
+                </div>
+            </Typography>
         )
     }
     templateTWO = (calculate) => {
@@ -52,6 +54,27 @@ class ChildrenDemo extends React.Component{
                     operator={'+'}
                 >
                 {(calculate) => this.templateTWO(calculate)}
+                </Math>
+                <Math
+                    first={5}
+                    second={3}
+                    operator={'-'}
+                >
+                {(calculate) => this.templateOne(calculate)}
+                </Math>
+                <Math
+                    first={1}
+                    second={9}
+                    operator={'*'}
+                >
+                {(calculate) => this.templateOne(calculate)}
+                </Math>
+                <Math
+                    first={1}
+                    second={0}
+                    operator={'/'}
+                >
+                {(calculate) => this.templateOne(calculate)}
                 </Math>
             </>
         )
