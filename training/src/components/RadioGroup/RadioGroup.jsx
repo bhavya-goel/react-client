@@ -1,12 +1,19 @@
 import React from 'react'
+import { errorText } from './style'
 
 function RadioGroup(props) {
-    console.log('in radio roup>>>>>>>>',props)
-    const redio = props.options.map((obj, index) => {
+    const { options, onChange, name, value, onFocus, error, onBlur } = props
+    const radio = options.map((obj, index) => {
         return(
             < React.Fragment key={index}>
-                <input type='radio' name={props.name} value={obj.value} onChange={props.onChange} 
-                    checked={obj.label === props.value}
+                <input
+                    type='radio'
+                    name={name}
+                    value={obj.value}
+                    onChange={onChange}
+                    onBlur={onBlur} 
+                    onFocus={onFocus}
+                    checked={obj.label === value}
                 />
                 <label>{obj.label}</label>
                 <br/>
@@ -18,7 +25,13 @@ function RadioGroup(props) {
         <br/>
         <label><strong>What you do</strong></label>
         <br/>
-        {redio}
+        {radio}
+        { !error.length ?
+            '' :
+            <>
+                <span style={errorText} >{error}</span>
+            </>
+        }
         </>
     )
 }

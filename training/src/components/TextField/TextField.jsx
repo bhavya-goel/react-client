@@ -1,9 +1,9 @@
 import React from 'react'
-import style, { error as errorStyle} from './style'
+import style, { error as errorStyle, errorText} from './style'
 
 function TextField(props) {
-    const { value, error, disabled, onChange } = props
-    let fieldStyle = style
+    const { value, error, disabled, onChange, onFocus, onBlur } = props
+    let fieldStyle = { ...style }
     if (error.length) {
         fieldStyle = {
             ...style,
@@ -11,15 +11,27 @@ function TextField(props) {
         }
     }
     return (
-        <input
-            type='text'
-            onChange={onChange}
-            name='textField'
-            value={value}
-            style={fieldStyle}
-            disabled={disabled}
-        >
-        </input>
+        <>
+            <label> Name </label>
+            <br/>
+            <input
+                type='text'
+                onFocus={onFocus}
+                onBlur={onBlur}
+                onChange={onChange}
+                name='textField'
+                value={value}
+                style={fieldStyle}
+                disabled={disabled}
+            >
+            </input>
+            { !error.length ?
+                '' :
+                <>
+                    <span style={errorText} >{error}</span>
+                </>
+            }
+        </>
     )
 }
 

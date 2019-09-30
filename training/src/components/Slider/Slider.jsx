@@ -4,15 +4,14 @@ import { PUBLIC_IMAGE_FOLDER } from '../../configs/constants'
 class Slider extends Component {
     constructor(props) {
         super(props)
+        const { banners, defaultBanner, altText, duration, height } = props
         this.state={
             bannerNumber: 0,
-            source: props.banners[0] || props.defaultBanner,
-            altText: props.altText || 'Default Banner',
-            duration: props.duration || 2000,
-            height: props.height || 200
+            source: banners[0] || defaultBanner,
+            altText: altText || 'Default Banner',
+            duration: duration || 2000,
+            height: height || 200
         }
-
-        this.changeBanner = this.changeBanner.bind(this)
     }
 
     componentDidMount() {
@@ -20,25 +19,27 @@ class Slider extends Component {
         setInterval(this.changeBanner, time)
     }
 
-    changeBanner() {
-        const current = this.state.bannerNumber
-        const index = this.props.random ? 
+    changeBanner = () => {
+        const { props: { random, banners }, state: { bannerNumber } } = this
+        const current = bannerNumber
+        const index = random ? 
         getRandomNumber(5) :
         getNextRoundRobin(6, current)
         this.setState({
             bannerNumber: index,
-            source: this.props.banners[index]
+            source: banners[index]
         })
     }
 
     render() {
+        const { state: { source, altText, height } } = this
         return (
-            <img src={PUBLIC_IMAGE_FOLDER + this.state.source}
-            alt={this.state.altText}
+            <img src={PUBLIC_IMAGE_FOLDER + source}
+            alt={altText}
             style={{
                 margin: 'auto',
                 display: 'block',
-                height: `${this.state.height}px`
+                height: `${height}px`
                 }}
             />
         )

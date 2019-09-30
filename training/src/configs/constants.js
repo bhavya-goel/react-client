@@ -8,7 +8,7 @@ export const GAMES_OPTIONS = [
 export const player = {
     cricket: [
         { label: 'Wicket Keeper', value: 'Wicket Keeper' },
-        { label: 'Batsman   ', value: 'Batsman' },
+        { label: 'Batsman', value: 'Batsman' },
         { label: 'Bowler', value: 'Bowler' },
         { label: 'All Rounder', value: 'All Rounder' }
     ],

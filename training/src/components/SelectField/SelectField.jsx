@@ -1,20 +1,31 @@
 import React from 'react'
+import { errorText } from './style'
 
 function SelectField(props) {
-    const options = props.options.map((obj, index) => <option value={obj.value} key={index}>{obj.label}</option> )
+    const { options, value, defaultText, onChange, onFocus, error, onBlur } = props
+    const option = options.map((obj, index) => <option value={obj.value} key={index}>{obj.label}</option> )
     return (
         <>
         <label><strong> Select the game you play</strong></label>
         <br/>
         <select
-            name="selectField"
-            value={props.value || props.defaultText }
-            onChange={props.onChange}
+            name="sport"
+            value={value || defaultText }
+            onBlur={onBlur}
+            onChange={onChange}
+            onFocus={onFocus}
         >
         {
-            options
+            option
         }
         </select>
+        <br/>
+        { !error.length ?
+            '' :
+            <>
+                <span style={errorText} >{error}</span>
+            </>
+        }
         <br/>
         </>
     )

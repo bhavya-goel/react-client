@@ -1,88 +1,226 @@
 import React, { Component } from 'react'
+import * as yup from 'yup'
 import { TextField } from '../../TextField'
 import { SelectField } from '../../SelectField'
 import { RadioGroup } from '../../RadioGroup'
+import { Button } from '../../Button'
 import { GAMES_OPTIONS, player} from '../../../configs/constants'
 class InputDemo extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            textField: '',
-            sport: null,
-            cricket: null,
-            footBall: null
+            textField: {
+                value: '',
+                isTouched: false,
+                error: ''
+            },
+            sport: {
+                value: '',
+                isTouched: false,
+                error: ''
+            },
+            cricket: {
+                value: '',
+                isTouched: false,
+                error: ''
+            },
+            footBall: {
+                value: '',
+                isTouched: false,
+                error: ''
+            },
+            button: {
+                disabled: true,
+                color: 'primary'
+            }
         }
-        this.handleNameChange= this.handleNameChange.bind(this)
-        this.handlePlayerChange= this.handlePlayerChange.bind(this)
-        this.handleSportChange= this.handleSportChange.bind(this)
+        this.FieldCheck = yup.object().shape({
+            textField: yup.string()
+                .required('name is required')
+                .min(3, 'name too short'),
+            sport: yup.string()
+                .required('sport is required'),
+            cricket: yup.string()
+                .required('cricket type is required'),
+            footBall: yup.string()
+                .required('fotBall type is required')
+        })
     }
 
-    handleNameChange(event) {
+    handleNameChange = (event) => {
         const value = event.target.value
-        this.setState({
-            textField: value
-        }, () => {
+        this.setState((previousState) => ({
+            textField: {
+                ...previousState.textField,
+                value,
+                error: ''
+            }
+        }), () => {
             console.log(this.state)
         })
     }
-    handlePlayerChange(event) {
+
+    handlePlayerChange = (event) => {
         const value = event.target.value
-        const name = this.state.sport
-        console.log("player", event.target)
-        if(name === 'cricket') {
-            this.setState({
-                cricket: value,
-                footBall: null
-            }, () => {
-                console.log(this.state)
-            })
-        } else if (name === 'footBall') {
-            this.setState({
-                cricket: null,
-                footBall: value
-            }, () => {
-                console.log(this.state)
-            })
+        const name = this.state.sport.value
+        this.setState((previousState) => ({
+            [name]: {
+                ...previousState[name],
+                value,
+                error: ''
+            }
+        }), () => {
+            console.log(this.state)
+        })
+    }
+
+    handleSportChange = (event) => {
+        const value = event.target.value
+        this.setState((previousState) => ({
+            sport: {
+                ...previousState.sport,
+                value,
+                error: ''
+            },
+            cricket: {
+                value: '',
+                isTouched: false,
+                error: ''
+            },
+            footBall: {
+                value: '',
+                isTouched: false,
+                error: ''
+            },
+        }), () => {
+            console.log(this.state)
+        })
+    }
+    
+    handleOnFocus = (event) => {
+        const name = event.target.name
+        this.setState((previousState) => ({
+            [name]: {
+                ...previousState[name],
+                isTouched: true
+            }
+        })
+    )}
+
+    isTouched = () => {
+        const { textField, sport, cricket, footBall } = this.state
+        if(textField.isTouched && sport.isTouched && (cricket.isTouched || footBall.isTouched)) {
+            return true
+        } else {
+            return false
         }
     }
-    handleSportChange(event) {
-        const value = event.target.value
-        this.setState({
-            sport: value,
-            cricket: null,
-            footBall: null
-        }, () => {
-            console.log(this.state)
+
+    getError = (event) => {
+        const field = event.target.name
+        if (this.state[field].isTouched) {
+            this.FieldCheck
+            .validateAt(field, {
+                [field]: this.state[field].value
+            })
+            .then((result) => {
+                console.log(result)
+                this.checkError()
+            })
+            .catch((errorText) => {
+                errorText = errorText.errors[0]
+                this.setState((previousState) => ({
+                    [field]: {
+                        ...previousState[field],
+                        error: errorText
+                    }
+                }), () =>{
+                    this.checkError()
+                }
+            )
+            }) 
+        }
+    }
+
+    hasError = () => {
+        const stateArray = ['textField', 'sport', 'cricket', 'footBall']
+        const result = stateArray.some((field) => {
+            if (this.state[field].error.length) {
+                return true
+            } else {
+                return false
+            }
         })
+        return result
+    }
+
+    submit = () => {
+    }
+
+    checkError = () => {
+        const touchResult = this.isTouched()
+        const result = this.hasError()
+        if(touchResult && !result) {
+            this.setState({
+                button: {
+                    color: 'secondary',
+                    disabled: false
+                }
+            })
+        } else {
+            this.setState({
+                button: {
+                    color: 'primary',
+                    disabled: true
+                }
+            })
+        }
     }
 
     render() { 
-        const { textField, sport, cricket, footBall } = this.state
+        const { textField, sport, cricket, footBall, button } = this.state
         let option = []
-        if (sport) {
-            option = player[sport]
+        if (sport.value.length) {
+            option = player[sport.value]
         }
         return(
             <div>
                 <TextField
-                    value={textField}
-                    error=''
+                    value={textField.value}
+                    error={textField.error}
+                    onBlur={this.getError}
+                    onFocus={this.handleOnFocus}
                     onChange={this.handleNameChange}
                 />
+                <br/>
+                <br/>
                 <SelectField
-                    value={sport}
+                    value={sport.value}
+                    error={sport.error}
                     defaultText={GAMES_OPTIONS[0].label}
+                    onFocus={this.handleOnFocus}
+                    onBlur={this.getError}
                     onChange={this.handleSportChange}
                     options={GAMES_OPTIONS}
                 />
-                { !sport ? '' :
+                { !sport.value.length ? '' :
                     <RadioGroup
-                        value={cricket || footBall}
+                        value={cricket.value || footBall.value}
+                        error={this.state[sport.value].error}
+                        onFocus={this.handleOnFocus}
+                        onBlur={this.getError}
                         onChange={this.handlePlayerChange}
                         options={ option }
-                        name={sport}
+                        name={sport.value}
                     />
                 }
+                <Button
+                    color={button.color}
+                    disabled={button.disabled}
+                    style={null}
+                    value={'Submit'}
+                    onClick={this.submit}
+                />
             </div>
         )
     }
