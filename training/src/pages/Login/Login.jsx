@@ -181,7 +181,6 @@ class Login extends React.Component {
                     disabled={button.disabled}
                     color={button.color}
                     style={formStyle.field}
-                    variant='contained'
                 >
                     Sign In
                 </Button>
