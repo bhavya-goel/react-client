@@ -1,10 +1,10 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import theme from './theme'
-import { PrivateLayout } from './layouts'
-import { Trainee } from './pages'
+import { PrivateLayout, AuthLayout } from './layouts'
+import { Trainee, Login, NoMatch, TextFieldDemo, ChildrenDemo, InputDemo } from './pages'
 
 function App() {
   return (
@@ -13,10 +13,28 @@ function App() {
         < MuiThemeProvider theme={theme}>
         <Router>
           <Switch>
+            <Redirect exact from='/' to='/trainee' />
+            <AuthLayout exact
+              path='/login'
+              component={Login}
+            />
             <PrivateLayout
-              path='/'
+              path='/trainee'
               component={Trainee}
             />
+            <PrivateLayout
+              path='/textField-demo'
+              component={TextFieldDemo}
+            />
+            <PrivateLayout
+              path='/Input-demo'
+              component={InputDemo}
+            />
+            <PrivateLayout
+              path='/children-demo'
+              component={ChildrenDemo}
+            />
+            <Route component={NoMatch} />
           </Switch>
         </Router>
         </ MuiThemeProvider>

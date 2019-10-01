@@ -1,6 +1,7 @@
 export const formStyle = {
     form: {
         display: 'flex',
+        textAlign: 'center',
         flexDirection: 'column',
         width: '50%',
         margin: '5% auto',

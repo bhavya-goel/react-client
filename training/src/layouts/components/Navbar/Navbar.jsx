@@ -26,7 +26,7 @@ function Navbar() {
                             <Link to='/children-demo' className={classes.link}>Children Demo</Link>
                         </Button>
                         <Button color='inherit'>
-                            <Link to='/login' className={classes.link}>Logout</Link>
+                            Logout
                         </Button>
                     </Toolbar>
                 </AppBar>
