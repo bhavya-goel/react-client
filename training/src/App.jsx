@@ -24,18 +24,22 @@ function App() {
               component={TraineeDetail}
             />
             <PrivateLayout
+              exact
               path='/trainee'
               component={TraineeList}
             />
             <PrivateLayout
+              exact
               path='/textField-demo'
               component={TextFieldDemo}
             />
             <PrivateLayout
+              exact
               path='/Input-demo'
               component={InputDemo}
             />
             <PrivateLayout
+              exact
               path='/children-demo'
               component={ChildrenDemo}
             />

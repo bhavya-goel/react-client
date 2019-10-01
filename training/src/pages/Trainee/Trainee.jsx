@@ -171,7 +171,6 @@ class Trainee extends React.Component {
         const { error, button, open, user, showIcon } = this.state
         return (
             <>
-                <Navbar/>
                 <AddDialog
                 onFocus={this.handleTouch}
                 error={error}

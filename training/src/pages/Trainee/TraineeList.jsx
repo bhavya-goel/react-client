@@ -177,7 +177,6 @@ class TraineeList extends React.Component {
         })
         return (
             <>
-                <Navbar/>
                 <AddDialog
                 onFocus={this.handleTouch}
                 error={error}
