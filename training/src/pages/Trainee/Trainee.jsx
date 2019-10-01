@@ -1,5 +1,6 @@
 import React from 'react'
 import * as yup from 'yup'
+import { Navbar } from '../components'
 import { AddDialog } from './components'
 import { Button } from '@material-ui/core'
 
@@ -87,7 +88,6 @@ class Trainee extends React.Component {
                 [name]: true
             }
         }))
-
     }
     handleChange = (event) => {
         let { target: { name, value } } = event
@@ -171,6 +171,7 @@ class Trainee extends React.Component {
         const { error, button, open, user, showIcon } = this.state
         return (
             <>
+                <Navbar/>
                 <AddDialog
                 onFocus={this.handleTouch}
                 error={error}

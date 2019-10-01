@@ -1,7 +1,6 @@
 import React from 'react'
-import { TextField } from '../../TextField'
-import { Slider } from '../../Slider'
-import { banner } from '../../../configs/constants'
+import { Slider, TextField } from '../../components'
+import { banner } from '../../configs/constants'
 
 function TextFieldDemo() {
     return(
