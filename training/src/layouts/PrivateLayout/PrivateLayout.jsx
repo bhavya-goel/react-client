@@ -1,9 +1,11 @@
 import React from 'react'
-function PrivateLayout({component: Component}) {
+import { Navbar } from '../components'
+function PrivateLayout({component: Component, ...rest}) {
     return (
         <>
-       <Component />
-       </>
+            <Navbar/>
+            <Component {...rest}/>
+        </>
     )
 }
 export default  PrivateLayout

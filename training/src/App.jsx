@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import theme from './theme'
 import { PrivateLayout, AuthLayout } from './layouts'
-import { Trainee, Login, NoMatch, TextFieldDemo, ChildrenDemo, InputDemo } from './pages'
+import { TraineeList, Login, NoMatch, TextFieldDemo, ChildrenDemo, InputDemo, TraineeDetail } from './pages'
 
 function App() {
   return (
@@ -19,18 +19,27 @@ function App() {
               component={Login}
             />
             <PrivateLayout
-              path='/trainee'
-              component={Trainee}
+              exact
+              path='/trainee/:id'
+              component={TraineeDetail}
             />
             <PrivateLayout
+              exact
+              path='/trainee'
+              component={TraineeList}
+            />
+            <PrivateLayout
+              exact
               path='/textField-demo'
               component={TextFieldDemo}
             />
             <PrivateLayout
+              exact
               path='/Input-demo'
               component={InputDemo}
             />
             <PrivateLayout
+              exact
               path='/children-demo'
               component={ChildrenDemo}
             />

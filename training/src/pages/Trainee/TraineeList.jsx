@@ -3,8 +3,9 @@ import * as yup from 'yup'
 import { Navbar } from '../../layouts'
 import { AddDialog } from './components'
 import { Button } from '@material-ui/core'
-
-class Trainee extends React.Component {
+import trainees from './data/trainee'
+import {Link} from 'react-router-dom'
+class TraineeList extends React.Component {
     constructor(props) {
         super(props)
         const passwordError = 'must contain minimum 8 characters, atleast one uppercase, atleast one lowercase, atleast one digit'
@@ -169,6 +170,11 @@ class Trainee extends React.Component {
     }
     render() {
         const { error, button, open, user, showIcon } = this.state
+        const list = trainees.map((obj) => {
+            return (
+                <li key={obj.id}><Link to={`/trainee/${obj.id}`}>{obj.name} </Link></li>
+            )
+        })
         return (
             <>
                 <AddDialog
@@ -190,11 +196,16 @@ class Trainee extends React.Component {
                     onClick={this.addTrainee}
                     variant='contained'
                 >
-                    Add Trainee
+                    Add TraineeList
                 </Button>
+                <>
+                <ul style={{listStyle: 'none'}}>
+                    {list}
+                </ul>
+                </>
             </>
         )
     }
 }
 
-export default Trainee
+export default TraineeList
