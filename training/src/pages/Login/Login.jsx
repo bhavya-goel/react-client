@@ -3,6 +3,7 @@ import { formStyle } from './style'
 import { TextField, Button, Paper, Avatar } from '@material-ui/core'
 import { LockOpen } from '@material-ui/icons'
 import * as yup from 'yup'
+import { Footer } from '../../layouts/components'
 import Email from '@material-ui/icons/Email'
 import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
@@ -181,10 +182,10 @@ class Login extends React.Component {
                     disabled={button.disabled}
                     color={button.color}
                     style={formStyle.field}
-                    variant='contained'
                 >
                     Sign In
                 </Button>
+                <Footer />
             </Paper>
         )
     }

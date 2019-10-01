@@ -1,6 +1,7 @@
 import React from 'react'
 import { ThemeProvider } from '@material-ui/styles'
 import { innerTheme, useStyles } from './style'
+import { Link } from 'react-router-dom'
 import { Toolbar, Button, Typography, AppBar } from '@material-ui/core'
 function Navbar() {
     const classes = useStyles()
@@ -13,16 +14,16 @@ function Navbar() {
                             Trainee Portal
                         </Typography>
                         <Button color='inherit'>
-                        Trainee
+                            <Link to='/' className={classes.link}>Trainee</Link>
                         </Button>
                         <Button color='inherit'>
-                            TextField Demo
+                            <Link to='/textField-demo' className={classes.link}>TextField Demo</Link>
                         </Button>
                         <Button color='inherit'>
-                            Input Demo
+                            <Link to='/Input-demo' className={classes.link}>Input Demo</Link>
                         </Button>
                         <Button color='inherit'>
-                            Children Demo
+                            <Link to='/children-demo' className={classes.link}>Children Demo</Link>
                         </Button>
                         <Button color='inherit'>
                             Logout
