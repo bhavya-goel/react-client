@@ -1,8 +1,8 @@
 import React from 'react'
-function PrivateLayout({component: Component}) {
+function PrivateLayout({component: Component, ...rest}) {
     return (
         <>
-       <Component />
+       <Component {...rest} />
        </>
     )
 }

@@ -14,7 +14,7 @@ function Navbar() {
                             Trainee Portal
                         </Typography>
                         <Button color='inherit'>
-                            <Link to='/' className={classes.link}>Trainee</Link>
+                            <Link to='/trainee' className={classes.link}>Trainee</Link>
                         </Button>
                         <Button color='inherit'>
                             <Link to='/textField-demo' className={classes.link}>TextField Demo</Link>
