@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import withHeader from './HocComponent'
 import { Table, TableHead, TableRow, TableCell, TableBody } from '@material-ui/core'
 function TableData(props) {
@@ -27,5 +28,8 @@ function TableData(props) {
             </TableBody>
         </Table>
     )
+}
+Table.propTypes = {
+    data: PropTypes.array.isRequired
 }
 export default withHeader(TableData)

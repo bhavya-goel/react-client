@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import withHeader from './HocComponent'
 function List(props) {
     const list = props.data.map((obj) => {
@@ -15,5 +16,8 @@ function List(props) {
             </u>
         </>
     )
+}
+List.propTypes = {
+    data: PropTypes.array.isRequired
 }
 export default withHeader(List)
