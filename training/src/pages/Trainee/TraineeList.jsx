@@ -1,7 +1,6 @@
 import React from 'react'
 import * as yup from 'yup'
-import { Navbar } from '../../layouts'
-import { AddDialog } from './components'
+import { AddDialog, Table} from './components'
 import { Button } from '@material-ui/core'
 import trainees from './data/trainee'
 import {Link} from 'react-router-dom'
@@ -199,6 +198,21 @@ class TraineeList extends React.Component {
                     Add TraineeList
                 </Button>
                 <>
+                <Table
+                    id='id'
+                    data={trainees}
+                    columns={[
+                        {
+                            field: 'name',
+                            label: 'Name',
+                            align: 'center'
+                        },
+                        {
+                            field: 'email',
+                            label: 'Email Address'
+                        }
+                    ]}
+                />
                 <ul style={{listStyle: 'none'}}>
                     {list}
                 </ul>
