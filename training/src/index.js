@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import WithList from './hoc/list'
 
 ReactDOM.render(
-  <App />,
+  <WithList name='bhavya'/>,
   document.getElementById('root')
 );
