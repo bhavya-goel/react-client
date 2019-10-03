@@ -17,6 +17,13 @@ function List(props) {
         </>
     )
 }
+List.defaultProps = {
+    data: [{
+        id: '5c6c47af7740654f0915fac9',
+        name: 'Sachin Tendulkar',
+        email: 'sachin@gmail.com'
+    }]
+}
 List.propTypes = {
     data: PropTypes.array.isRequired
 }
