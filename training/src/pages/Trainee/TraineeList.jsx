@@ -209,7 +209,8 @@ class TraineeList extends React.Component {
                         },
                         {
                             field: 'email',
-                            label: 'Email Address'
+                            label: 'Email Address',
+                            align: 'center'
                         }
                     ]}
                 />
