@@ -4,6 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import theme from './theme'
 import { PrivateLayout, AuthLayout } from './layouts'
+import List from './pages/Apollo/list'
 import { TraineeList, Login, NoMatch, TextFieldDemo, ChildrenDemo, InputDemo, TraineeDetail } from './pages'
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
             <PrivateLayout
               exact
               path='/trainee'
-              component={TraineeList}
+              component={List}
             />
             <PrivateLayout
               exact
