@@ -1,6 +1,5 @@
 import React from 'react'
 import * as yup from 'yup'
-import { Navbar } from '../../layouts'
 import { AddDialog } from './components'
 import { Button } from '@material-ui/core'
 import trainees from './data/trainee'
