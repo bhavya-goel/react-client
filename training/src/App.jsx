@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import theme from './theme'
 import { PrivateLayout, AuthLayout } from './layouts'
-import { TraineeList, GetTrainee, Login, NoMatch, TextFieldDemo, ChildrenDemo, InputDemo, TraineeDetail } from './pages'
+import { TraineeList, GetTrainee, Login, NoMatch, TextFieldDemo, ChildrenDemo, InputDemo, TraineeDetail, UserMe } from './pages'
 import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from 'react-apollo'
 
@@ -43,8 +43,14 @@ function App() {
                 component={TraineeList}
               />
               <PrivateLayout
-                exactpath='/getTrainee'
+                exact
+                path='/getTrainee'
                 component={GetTrainee}
+              />
+              <PrivateLayout
+                exact
+                path='/me'
+                component={UserMe}
               />
               <PrivateLayout
                 exact

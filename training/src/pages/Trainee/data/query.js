@@ -19,5 +19,18 @@ export const query = {
           message
           data
       }
-  }`
+    }`,
+    me: `
+      {
+        me{
+        data{
+          name
+          createdBy {
+            name
+          }
+        }
+        message
+        status
+      }
+    }`
 }
