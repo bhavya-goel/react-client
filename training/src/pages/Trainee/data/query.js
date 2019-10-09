@@ -10,5 +10,14 @@ export const query = {
             }
           }
         }
-    }`
+    }`,
+    login: `query login($email: String!, $password: String!){
+      login(input: {
+          email: $email,
+          password: $password
+      }){
+          message
+          data
+      }
+  }`
 }

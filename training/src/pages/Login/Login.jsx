@@ -9,15 +9,16 @@ import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import IconButton from '@material-ui/core/IconButton'
-
+import gql from 'graphql-tag'
+import { query } from '../Trainee/data/query'
 
 class Login extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.FieldCheck = yup.object().shape({
             email: yup.string()
                 .required('email is required')
-                .matches(/^[a-zA-Z0-9.]+@gmail\.com$/, 'enter a valid email'),
+                .matches(/^[a-zA-Z0-9.]+@successive\.tech$/, 'enter a valid email'),
             password: yup.string()
                 .required('password is required')
         })
@@ -120,6 +121,20 @@ class Login extends React.Component {
             showIcon: !previousState.showIcon
         }))
     }
+    submit = () => {
+        this.props.client.query({
+            variables: {email: this.state.user.email,
+                password: this.state.user.password },
+            query: gql `${query.login}`
+        }).then((res) => {
+            console.log('rfdwgc', res)
+            localStorage.setItem('token', res.data.login.data)
+        })
+        .catch(() => {
+            console.log('error')
+        })
+        
+    }
     render() {
         const { user: { email, password }, button, error, showIcon } = this.state
         return (
@@ -181,6 +196,7 @@ class Login extends React.Component {
                     variant='contained'
                     disabled={button.disabled}
                     color={button.color}
+                    onClick={this.submit}
                     style={formStyle.field}
                 >
                     Sign In

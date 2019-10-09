@@ -1,11 +1,11 @@
 import React from 'react'
 import { Navbar } from '../components'
 
-function AuthLayout({component: Component}) {
+function AuthLayout({component: Component, ...rest}) {
     return(
        <>
         <Navbar/>
-        <Component />
+        <Component {...rest} />
        </>
     )
 }

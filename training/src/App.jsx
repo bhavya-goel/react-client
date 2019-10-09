@@ -13,7 +13,7 @@ const client = new ApolloClient({
   request: (operation) => {
     operation.setContext({
       headers: {
-        authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDc2MDhiNGE2NDZmMDQyNzY3MGNmZTUiLCJyb2xlIjoiaGVhZC10cmFpbmVyIiwiZW1haWwiOiJoZWFkLnRyYWluZXJAc3VjY2Vzc2l2ZS50ZWNoIiwibmFtZSI6ImhlYWRUcmFpbmVyIiwicGFzc3dvcmQiOiIkMmIkMTAkRFlVTUhyVHZqQmNHVjh0S2kvQm5SZTRVM1N6MlRCMXJuU3RoTDMuMVRSb2lXZ1V5VjlHbjIiLCJjcmVhdGVkQXQiOiIyMDE5LTA5LTA5VDA4OjA5OjI0Ljk1MloiLCJjcmVhdGVkQnkiOiI1ZDc2MDhiNGE2NDZmMDQyNzY3MGNmZTUiLCJvcmlnaW5hbElEIjoiNWQ3NjA4YjRhNjQ2ZjA0Mjc2NzBjZmU1IiwiX192IjowLCJpYXQiOjE1NzA2MjA0MjYsImV4cCI6MTU3MDYyMTMyNn0.f3T5-eOdsxrCZJewcWHYCHImOZLejXkf16ygsLD07uI'
+        authorization: localStorage.getItem('token')
       }
     })
   }
@@ -29,6 +29,7 @@ function App() {
               <Redirect exact from='/' to='/trainee' />
               <AuthLayout exact
                 path='/login'
+                client={client}
                 component={Login}
               />
               <PrivateLayout
