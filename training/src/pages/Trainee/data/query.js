@@ -1,6 +1,6 @@
 export const query = {
-    traineeList: `{
-        getTrainee{
+    traineeList: `query getTrainee($skip: Int, $limit: Int){
+        getTrainee(skip: $skip, limit: $limit){
           message
           status
           data{
