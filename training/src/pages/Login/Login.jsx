@@ -127,7 +127,6 @@ class Login extends React.Component {
                 password: this.state.user.password },
             query: gql `${query.login}`
         }).then((res) => {
-            console.log('rfdwgc', res)
             localStorage.setItem('token', res.data.login.data)
         })
         .catch(() => {

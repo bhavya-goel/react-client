@@ -32,5 +32,18 @@ export const query = {
         message
         status
       }
-    }`
+    }`,
+    addTrainee: `mutation createTrainee($name: String, $password: String, $email: String){
+      createTrainee(input: {
+      email: $email
+        name: $name
+        password: $password
+      }) {
+        data{
+          name
+        }
+        message
+        status
+      }
+      }`
 }

@@ -1,9 +1,9 @@
 import React from 'react'
 import * as yup from 'yup'
-import { Navbar } from '../../layouts'
 import { AddDialog } from './components'
 import { Button } from '@material-ui/core'
-
+import gql from 'graphql-tag'
+import { query } from './data/query'
 class Trainee extends React.Component {
     constructor(props) {
         super(props)
@@ -14,10 +14,10 @@ class Trainee extends React.Component {
                 .min(3, 'name too short'),
             email: yup.string()
                 .required('email is required')
-                .matches(/^[a-zA-Z0-9.]+@gmail\.com$/, 'enter a valid email'),
+                .matches(/^[a-zA-Z0-9.]+@successive\.tech$/, 'enter a valid email'),
             password: yup.string()
                 .required('password is required')
-                .min(8, passwordError)
+                .min(3, passwordError)
                 .matches(/(.*[a-z].*)/, passwordError)
                 .matches(/(.*[A-Z].*)/, passwordError)
                 .matches(/(.*[0-9].*)/, passwordError),
@@ -73,10 +73,20 @@ class Trainee extends React.Component {
         })
     }
     submit = () => {
+        const { user } = this.state
         this.setState({
             open: false
         }, () => {
-            console.log(this.state.user)
+            this.props.client.mutate({
+                variables: {
+                    email: user.email,
+                    password: user.password,
+                    name: user.name
+                },
+                mutation: gql `${query.addTrainee}`
+            })
+            .then(() => {console.log('Trainee Added')})
+            .catch((err) => {console.log(err.message)})
         })
         
     }

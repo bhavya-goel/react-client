@@ -18,6 +18,7 @@ function GetTrainee() {
                     if (loading) return <p> Loading </p>
                     if (error) return <p> {console.log(error.message)} </p>
                     const data1 = data.getTrainee.data.records
+                    console.log(data.getTrainee.data.count)
                     return <List list={data1} />
                 }}
             </Query>
