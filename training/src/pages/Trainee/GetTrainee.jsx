@@ -24,18 +24,18 @@ function GetTrainee() {
                     if (loading) return <p> Loading </p>
                     if (error) return <p> Error Loading{console.log(error.message)} </p>
                     const { getTrainee: { data: { records } } } = data
-                    return <List list={records} loadMore={()=> {
+                    return <List list={records} loadMore={async ()=> {
                             skip = skip+limit
-                            return fetchMore({
+                            const result = await fetchMore({
                                 variables: {
                                     skip,
                                     limit
                                 },
-                                updateQuery: (previousResult, {fetchMoreResult}) => {
-                                    const { getTrainee: { data: { records }}} = fetchMoreResult;
-                                    return records;
-                                }
+                                updateQuery: () => {}
                             })
+                            if(result) {
+                                return result.data.getTrainee.data.records
+                            }
                          }} />
                 }}
             </Query>

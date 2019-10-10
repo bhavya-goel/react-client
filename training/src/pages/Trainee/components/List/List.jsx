@@ -7,20 +7,18 @@ class TextList extends React.Component{
             list: this.props.list
         }
     }
-    load = () => {
-        this.props.loadMore()
-        .then(({data: { getTrainee: { data: { records }}}}) => {
-            if (!records.length) {
-                this.setState({
-                    list: []
-                })
-            }
-            else {
-                this.setState({
-                    list: records
-                })
-            }
-        })
+    load = async () => {
+        const records = await this.props.loadMore()
+        if (!records.length) {
+            this.setState({
+                list: []
+            })
+        }
+        else {
+            this.setState({
+                list: records
+            })
+        }
     }
     render() {
         const { list } = this.state
