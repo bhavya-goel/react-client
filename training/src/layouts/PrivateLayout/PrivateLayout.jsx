@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import { Navbar } from '../components'
 function PrivateLayout({component: Component, ...rest}) {
     return (
@@ -8,4 +9,4 @@ function PrivateLayout({component: Component, ...rest}) {
         </>
     )
 }
-export default  PrivateLayout
+export default  withRouter(PrivateLayout)

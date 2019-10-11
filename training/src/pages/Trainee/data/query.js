@@ -1,5 +1,6 @@
+import gql from 'graphql-tag'
 export const query = {
-    traineeList: `query getTrainee($skip: Int, $limit: Int){
+    traineeList:gql `query getTrainee($skip: Int, $limit: Int){
         getTrainee(skip: $skip, limit: $limit){
           message
           status
@@ -7,11 +8,12 @@ export const query = {
             count
             records{
               name
+              originalID
             }
           }
         }
     }`,
-    login: `query login($email: String!, $password: String!){
+    login: gql `query login($email: String!, $password: String!){
       login(input: {
           email: $email,
           password: $password
@@ -20,7 +22,7 @@ export const query = {
           data
       }
     }`,
-    me: `
+    me: gql `
       {
         me{
         data{
@@ -33,7 +35,7 @@ export const query = {
         status
       }
     }`,
-    addTrainee: `mutation createTrainee($name: String, $password: String, $email: String){
+    addTrainee: gql `mutation createTrainee($name: String, $password: String, $email: String){
       createTrainee(input: {
       email: $email
         name: $name
@@ -45,5 +47,14 @@ export const query = {
         message
         status
       }
-      }`
+    }`,
+  deleteTrainee: gql `mutation deleteTrainee($id: String!){
+    deleteTrainee(id: $id){
+      message
+      status
+      data{
+        id
+      }
+    }
+  }`
 }

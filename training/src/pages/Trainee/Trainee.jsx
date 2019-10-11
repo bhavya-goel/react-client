@@ -202,6 +202,30 @@ class Trainee extends React.Component {
                 >
                     Add Trainee
                 </Button>
+                <br/>
+                <br/>
+                <Button
+                    onClick={() => {this.props.history.push('/trainee/updateTrainee')}}
+                    variant='contained'
+                >
+                    Update Trainee
+                </Button>
+                <br/>
+                <br/>
+                <Button
+                    onClick={() => {this.props.history.push('/trainee/deleteTrainee')}}
+                    variant='contained'
+                >
+                    Delete Trainee
+                </Button>
+                <br/>
+                <br/>
+                <Button
+                    onClick={() => {this.props.history.push('/trainee/getTrainee')}}
+                    variant='contained'
+                >
+                    Get Trainee List
+                </Button>
             </>
         )
     }

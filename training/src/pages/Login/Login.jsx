@@ -9,7 +9,6 @@ import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import IconButton from '@material-ui/core/IconButton'
-import gql from 'graphql-tag'
 import { query } from '../Trainee/data/query'
 
 class Login extends React.Component {
@@ -125,12 +124,13 @@ class Login extends React.Component {
         this.props.client.query({
             variables: {email: this.state.user.email,
                 password: this.state.user.password },
-            query: gql `${query.login}`
+            query: query.login
         }).then((res) => {
             localStorage.setItem('token', res.data.login.data)
+            this.props.history.push('/trainee/me')
         })
-        .catch(() => {
-            console.log('error')
+        .catch((err) => {
+            console.log('error', err)
         })
         
     }

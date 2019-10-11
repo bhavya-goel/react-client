@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import { Navbar } from '../components'
 
 function AuthLayout({component: Component, ...rest}) {
@@ -9,4 +10,4 @@ function AuthLayout({component: Component, ...rest}) {
        </>
     )
 }
-export default AuthLayout
+export default withRouter(AuthLayout)

@@ -1,7 +1,6 @@
 import React from 'react'
 import { query } from './data/query'
 import { Query } from 'react-apollo'
-import gql from 'graphql-tag'
 import { List } from './components/List'
 function GetTrainee() {
     let skip = 0
@@ -16,9 +15,7 @@ function GetTrainee() {
                     skip,
                     limit
                 }}
-                query={
-                    gql `${query.traineeList}`  
-                }
+                query={ query.traineeList }
             >
                 {({ loading, error, data, fetchMore }) => {
                     if (loading) return <p> Loading </p>

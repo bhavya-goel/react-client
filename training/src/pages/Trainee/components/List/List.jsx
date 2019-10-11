@@ -36,6 +36,11 @@ class TextList extends React.Component{
                                 >
                                     {obj.name}
                                 </Typography>
+                                <Typography
+                                    variant='subtitle2'
+                                >
+                                    {obj.originalID}
+                                </Typography>
                             </>
                         } />
                     </ListItem>

@@ -1,7 +1,6 @@
 import React from 'react'
 import { query } from './data/query'
 import { Query } from 'react-apollo'
-import gql from 'graphql-tag'
 function UserMe() {
     return (
         <>
@@ -9,9 +8,7 @@ function UserMe() {
                 Trainee Profile
             </h1>
             <Query
-                query={
-                    gql `${query.me}`  
-                }
+                query={query.me}
             >
                 {({ loading, error, data }) => {
                     if (loading) return <p> Loading </p>
