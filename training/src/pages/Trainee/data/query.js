@@ -9,6 +9,7 @@ export const query = {
             records{
               name
               originalID
+              email
             }
           }
         }
