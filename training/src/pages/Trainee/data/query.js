@@ -44,6 +44,8 @@ export const query = {
       }) {
         data{
           name
+          email
+          originalID
         }
         message
         status

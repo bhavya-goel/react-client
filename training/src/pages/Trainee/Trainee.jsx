@@ -83,6 +83,31 @@ class Trainee extends React.Component {
                     password: user.password,
                     name: user.name
                 },
+                update: (cache, { data }) => {
+                    const {
+                      createTrainee: {
+                        data: { name, email, originalID }
+                      }
+                    } = data;
+                    const traineelist = cache.readQuery({
+                      query: query.traineeList,
+                      variables: {
+                        skip: 0,
+                        limit: 10
+                      }
+                    });
+                    const { getTrainee} = traineelist
+                    getTrainee.count += 1
+                    getTrainee.data.records = getTrainee.data.records.concat([{name, email, originalID}]);
+                    cache.writeQuery({
+                      query: query.traineeList,
+                      variables: {
+                        skip: 0,
+                        limit: 10
+                      },
+                      data: traineelist
+                    });
+                },
                 mutation: gql `${query.addTrainee}`
             })
             .then(() => {console.log('Trainee Added')})
