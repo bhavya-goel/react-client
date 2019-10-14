@@ -89,24 +89,28 @@ class Trainee extends React.Component {
                         data: { name, email, originalID }
                       }
                     } = data;
-                    const traineelist = cache.readQuery({
-                      query: query.traineeList,
-                      variables: {
-                        skip: 0,
-                        limit: 10
-                      }
-                    });
-                    const { getTrainee} = traineelist
-                    getTrainee.count += 1
-                    getTrainee.data.records = getTrainee.data.records.concat([{name, email, originalID}]);
-                    cache.writeQuery({
-                      query: query.traineeList,
-                      variables: {
-                        skip: 0,
-                        limit: 10
-                      },
-                      data: traineelist
-                    });
+                    try {
+                        const traineelist = cache.readQuery({
+                          query: query.traineeList,
+                          variables: {
+                            skip: 0,
+                            limit: 10
+                          }
+                        });
+                        const { getTrainee} = traineelist
+                        getTrainee.count += 1
+                        getTrainee.data.records = getTrainee.data.records.concat([{name, email, originalID}]);
+                        cache.writeQuery({
+                          query: query.traineeList,
+                          variables: {
+                            skip: 0,
+                            limit: 10
+                          },
+                          data: traineelist
+                        });
+                    } catch(err) {
+                        console.log('cache write failed')
+                    }
                 },
                 mutation: gql `${query.addTrainee}`
             })
