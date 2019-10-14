@@ -25,9 +25,11 @@ class DeleteTrainee extends React.Component {
         limit: 10
       }
     });
-    const { getTrainee} = traineelist
-    getTrainee.data.count -= 1
-    getTrainee.data.records = getTrainee.data.records.filter(obj => obj.originalID != id);
+    const { getTrainee } = traineelist;
+    getTrainee.data.count -= 1;
+    getTrainee.data.records = getTrainee.data.records.filter(
+      obj => obj.originalID != id
+    );
     cache.writeQuery({
       query: query.traineeList,
       variables: {
@@ -38,8 +40,12 @@ class DeleteTrainee extends React.Component {
     });
   };
   render() {
+    const {
+      location: { state },
+      history: { push }
+    } = this.props;
     let id;
-    if (this.props.location.state) id = this.props.location.state.id;
+    if (state) id = state.id;
     else id = null;
     return (
       <>
@@ -64,11 +70,11 @@ class DeleteTrainee extends React.Component {
                       })
                         .then(() => {
                           console.log("trainee deleted successfully");
-                          this.props.history.push("/trainee/getTrainee");
+                          push("/trainee/getTrainee");
                         })
                         .catch(err => {
                           console.log(err.message);
-                          this.props.history.push("/trainee/getTrainee");
+                          push("/trainee/getTrainee");
                         });
                     }}
                     autoFocus
@@ -77,7 +83,7 @@ class DeleteTrainee extends React.Component {
                   </Button>
                   <Button
                     onClick={() => {
-                      this.props.history.push("/trainee/getTrainee");
+                      push("/trainee/getTrainee");
                     }}
                   >
                     No

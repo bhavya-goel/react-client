@@ -43,10 +43,14 @@ class TextList extends React.Component{
                             <TableCell> {obj.name} </TableCell>
                             <TableCell> {obj.email} </TableCell>
                             <TableCell>
-                                <Link
-                                    to='/trainee/updateTrainee'
-                                    id={obj.originalID}
-                                > Edit 
+                                <Link to={{
+                                    pathname: '/trainee/updateTrainee',
+                                    state: {
+                                        id: obj.originalID,
+                                        name: obj.name,
+                                        email: obj.email
+                                    }
+                                }}> Edit 
                                 </Link> | <Link to={{
                                     pathname: '/trainee/deleteTrainee',
                                     state: {
