@@ -8,6 +8,9 @@ class TextList extends React.Component{
             list: this.props.list
         }
     }
+    componentDidMount = () => {
+        this.props.subscribeToData()
+    } 
     load = async () => {
         const records = await this.props.loadMore()
         if (!records.length) {

@@ -65,17 +65,27 @@ export const query = {
     }
   `,
   updateTrainee: gql`
-    mutation updateTrainee($id: String, $name: String, $email: String){
+    mutation updateTrainee($id: String, $name: String, $email: String) {
       updateTrainee(
-        input: {
-          id: $id
-          dataToUpdate: { name: $name, email: $email }
-        }
+        input: { id: $id, dataToUpdate: { name: $name, email: $email } }
       ) {
         message
         status
         data {
           id
+        }
+      }
+    }
+  `,
+  subscriptionAdd: gql`
+    subscription {
+      traineeUpdated {
+        result {
+          message
+          status
+          data {
+            id
+          }
         }
       }
     }
